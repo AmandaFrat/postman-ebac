@@ -1,0 +1,297 @@
+{
+	"info": {
+		"_postman_id": "1d7e5f4e-98c9-4635-880a-8e6d04a548b5",
+		"name": "Teste ServeRest EBAC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28892708",
+		"_collection_link": "https://solar-rocket-839619.postman.co/workspace/Estudos-EBAC~54b479d6-5e2b-4b0d-b1f6-6eb1a808e096/collection/28892708-1d7e5f4e-98c9-4635-880a-8e6d04a548b5?action=share&source=collection_link&creator=28892708"
+	},
+	"item": [
+		{
+			"name": "Listar usuários",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Usuário consta na lista\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Amanda Frateschi\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Usuários",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Mensagem de sucesso\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Solicitação de POST com sucesso\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Margarida\",\r\n  \"email\": \"margarida@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Usuários por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Resposta em menos de 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuarios/5LM2MagUbm5VKPGH",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"5LM2MagUbm5VKPGH"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Mensagem de sucesso\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuarios/5xLmZzVUiyx7XzXp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"5xLmZzVUiyx7XzXp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Mensagem de sucesso\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"nome\": \"Joana Carolina\",\r\n \"email\": \"joana@qa.com.br\",\r\n \"password\": \"teste\",\r\n \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios/GAtm1RDapXUSbMrW",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"GAtm1RDapXUSbMrW"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Usuário por ID - Cenário Negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code é 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Mensagem\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Usuário não encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuarios/5xLmZzVUiyx7XzXp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"5xLmZzVUiyx7XzXp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Usuário - Cenário Negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Mensagem\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Este email já está sendo usado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Beltrano da Silva\",\r\n  \"email\": \"polly@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
